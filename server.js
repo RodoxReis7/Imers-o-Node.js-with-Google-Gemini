@@ -1,5 +1,7 @@
 import express from 'express';
-console.log(process.env.STRING_CONEXAO)
+import routes from './src/routes/postRoutes.js';
+
+// Array de posts inicial (pode ser substituído por dados do banco de dados)
 const posts = [
     {
         id: 1,
@@ -28,24 +30,22 @@ const posts = [
     }
 ];
 
+// Cria uma instância do Express.js
 const app = express();
 
-app.use(express.json());
 
+// Inicia o servidor na porta 3000
 app.listen(3000, () => {
     console.log('Servidor Escutando...');
 });
 
-app.get('/posts', (req, res) => {
-    res.status(200).json(posts);
-});
 
-function buscarPostPorId(id) {
-    return posts.findIndex((posts) => {
-        return posts.id === Number(id);
-    });
-};
-app.get('/posts/:id', (req, res) => {
-    const index = buscarPostPorId(req.params.id);
-    res.status(200).json(posts[index]);
-});
+// function buscarPostPorId(id) {
+//     return posts.findIndex((posts) => {
+//         return posts.id === Number(id);
+//     });
+// };
+// app.get('/posts/:id', (req, res) => {
+//     const index = buscarPostPorId(req.params.id);
+//     res.status(200).json(posts[index]);
+// });
