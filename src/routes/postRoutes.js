@@ -1,11 +1,16 @@
-import express from 'express'
-import { listarPosts } from '../controllers/postsController.js';
+import express from "express";
+import { listarPosts, postarNovoPost } from '../controllers/postsController.js';
 
 const routes = (app) => {
-    // Habilita o parsing de JSON no corpo das requisições
+    // Permite que o servidor interprete corpos de requisições no formato JSON
     app.use(express.json());
-    // Rota GET para buscar todos os posts
-    app.get('/posts');
+  
+    // Rota para recuperar uma lista de todos os posts
+    app.get("/posts", listarPosts); // Chama a função controladora apropriada
+  
+    // Rota para criar um novo post
+    app.post("/posts", postarNovoPost); // Chama a função controladora para criação de posts
+  
 }
 
 export default routes;
